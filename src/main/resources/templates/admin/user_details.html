@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/admin_base :: layout(~{::section})}">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+<body>
+<section>
+
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-header bg-primary text-white text-center">
+
+                        <h3>
+
+                            User Information
+
+                        </h3>
+
+                    </div>
+
+                    <div class="card-body text-center">
+
+                        <img th:src="@{'/img/profile_img/'+${userInfo.profileImage}}"
+                             width="120"
+                             height="120"
+                             class="rounded-circle border shadow">
+
+                        <h4 class="mt-3">
+
+                            [[${userInfo.name}]]
+
+                        </h4>
+
+                        <hr>
+
+                        <div class="text-start">
+
+                            <p>
+                                <strong>User ID :</strong>
+                                [[${userInfo.id}]]
+                            </p>
+
+                            <p>
+                                <strong>Email :</strong>
+                                [[${userInfo.email}]]
+                            </p>
+
+                            <p>
+                                <strong>Mobile :</strong>
+                                [[${userInfo.mobileNumber}]]
+                            </p>
+
+                            <p>
+                                <strong>Address :</strong>
+                                [[${userInfo.address}]]
+                            </p>
+
+                            <p>
+                                <strong>City :</strong>
+                                [[${userInfo.city}]]
+                            </p>
+
+                            <p>
+                                <strong>State :</strong>
+                                [[${userInfo.state}]]
+                            </p>
+
+                            <p>
+                                <strong>Pincode :</strong>
+                                [[${userInfo.pincode}]]
+                            </p>
+
+                            <p>
+                                <strong>Status :</strong>
+
+                                <span th:if="${userInfo.isEnable}"
+                                      class="badge bg-success">
+
+                                    Active
+
+                                </span>
+
+                                <span th:unless="${userInfo.isEnable}"
+                                      class="badge bg-danger">
+
+                                    Inactive
+
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                        <a href="/admin/"
+                           class="btn btn-primary">
+
+                            Back
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+</body>
+</html>

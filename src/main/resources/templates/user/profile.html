@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base :: layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>My Profile</title>
+</head>
+
+<body>
+
+<section>
+
+	<div class="container mt-5">
+
+		<div class="row justify-content-center">
+
+			<div class="col-lg-8">
+
+				<div class="card shadow-lg border-0">
+
+					<div class="card-body p-4">
+
+						<!-- Profile Header -->
+
+						<div class="d-flex align-items-center mb-4">
+
+							<div class="position-relative d-inline-block">
+
+								<img th:src="@{'/img/profile_img/'+${user.profileImage}}"
+									 class="rounded-circle border shadow-sm"
+									 width="100"
+									 height="100">
+
+								<form action="/users/update-profile-image"
+									  method="post"
+									  enctype="multipart/form-data"
+									  id="imageForm">
+
+									<input type="hidden"
+										   name="id"
+										   th:value="${user.id}">
+
+									<input type="file"
+										   id="profileImageInput"
+										   name="file"
+										   style="display:none"
+										   onchange="document.getElementById('imageForm').submit()">
+
+								</form>
+
+								<label for="profileImageInput"
+									   class="position-absolute bottom-0 end-0 bg-white rounded-circle border shadow p-2"
+									   style="cursor:pointer;">
+
+									<i class="fa-solid fa-pen text-primary"></i>
+
+								</label>
+
+							</div>
+
+							<div class="ms-4">
+
+								<h4 class="fw-bold mb-1">
+									[[${user.name}]]
+								</h4>
+
+								<p class="text-muted mb-0">
+									[[${user.email}]]
+								</p>
+
+							</div>
+
+						</div>
+
+						<hr>
+
+						<!-- Name -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								Name
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.name}]]
+							</div>
+
+						</div>
+
+						<!-- Email -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								Email Account
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.email}]]
+							</div>
+
+						</div>
+
+						<!-- Mobile -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								Mobile Number
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.mobileNumber}]]
+							</div>
+
+						</div>
+
+						<!-- Address -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								Address
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.address}]]
+							</div>
+
+						</div>
+
+						<!-- City -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								City
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.city}]]
+							</div>
+
+						</div>
+
+						<!-- State -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								State
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.state}]]
+							</div>
+
+						</div>
+
+						<!-- Pincode -->
+
+						<div class="row py-3 border-bottom">
+
+							<div class="col-md-4 fw-semibold">
+								Pincode
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.pincode}]]
+							</div>
+
+						</div>
+
+						<!-- Role -->
+
+						<div class="row py-3">
+
+							<div class="col-md-4 fw-semibold">
+								Role
+							</div>
+
+							<div class="col-md-8 text-end text-muted">
+								[[${user.role}]]
+							</div>
+
+						</div>
+
+						<!-- Buttons -->
+
+						<div class="mt-4 d-flex justify-content-center">
+
+							<a href="/users/edit-profile"
+							   class="btn btn-primary px-4 me-2">
+
+								<i class="fa-solid fa-user-pen me-2"></i>
+								Edit Profile
+
+							</a>
+
+							<a href="/users/change-password"
+							   class="btn btn-outline-secondary px-4">
+
+								<i class="fa-solid fa-key me-2"></i>
+								Change Password
+
+							</a>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+</body>
+</html>

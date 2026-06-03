@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{admin/admin_base :: layout(~{::section})}">
+
+<head>
+
+	<meta charset="ISO-8859-1">
+
+	<title>Category Page</title>
+
+</head>
+
+<body>
+
+
+
+
+<section>
+
+	<div class="container mt-5">
+
+		<div class="row justify-content-center">
+
+			<div class="col-md-6 col-lg-5">
+
+				<div class="card shadow-lg border-0">
+					<div class="card-header bg-primary text-white text-center py-3">
+						<h3 class="mb-0 fw-bold">
+							Add Category
+						</h3>
+					</div>
+
+					<div class="card-body p-4">
+
+						<!-- Success Message -->
+
+						<th:block th:if="${session.succMsg}">
+							<div class="alert alert-success">
+								[[${session.succMsg}]]
+							</div>
+
+							<th:block
+									th:text="${@commnServiceImpl.removeSessionMessage()}">
+							</th:block>
+						</th:block>
+
+						<!-- Error Message -->
+
+						<th:block th:if="${session.errorMsg}">
+							<div class="alert alert-danger">
+								[[${session.errorMsg}]]
+							</div>
+
+							<th:block
+									th:text="${@commnServiceImpl.removeSessionMessage()}">
+							</th:block>
+						</th:block>
+
+						<form action="/categories/save"
+							  method="post"
+							  enctype="multipart/form-data">
+
+							<div class="mb-3">
+
+								<label class="form-label fw-semibold">
+									Enter Category
+								</label>
+
+								<input type="text"
+									   name="name"
+									   class="form-control form-control-lg"
+									   placeholder="Enter category name"
+									   required>
+
+							</div>
+
+							<div class="mb-3">
+
+								<label class="form-label fw-semibold">
+									Status
+								</label>
+
+								<div class="d-flex gap-4 mt-2">
+
+									<div class="form-check">
+
+										<input class="form-check-input"
+											   type="radio"
+											   checked
+											   value="true"
+											   name="isActive"
+											   id="active">
+
+										<label class="form-check-label"
+											   for="active">
+											Active
+										</label>
+
+									</div>
+
+									<div class="form-check">
+
+										<input class="form-check-input"
+											   type="radio"
+											   value="false"
+											   name="isActive"
+											   id="inactive">
+
+										<label class="form-check-label"
+											   for="inactive">
+											Inactive
+										</label>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="mb-4">
+
+								<label class="form-label fw-semibold">
+									Upload Image
+								</label>
+
+								<input type="file"
+									   name="file"
+									   class="form-control">
+
+							</div>
+
+							<button type="submit"
+									class="btn btn-primary w-100 btn-lg">
+
+								<i class="fa-solid fa-floppy-disk me-2"></i>
+								Save Category
+
+							</button>
+
+						</form>
+
+					</div>
+					```
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+</body>
+
+</html>

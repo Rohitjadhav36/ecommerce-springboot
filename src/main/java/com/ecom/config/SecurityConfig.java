@@ -1,0 +1,50 @@
+package com.ecom.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Collection;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Autowired
+    private AuthenticationSuccessHandlerImpl authenticationSuccessHandler;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.csrf(csrf->csrf.disable()).cors(cors->cors.disable())
+                .authorizeHttpRequests(req->req.requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/**").permitAll())
+                // Login Configuration
+                .formLogin(form -> form
+                        .loginPage("/signin")
+                        .loginProcessingUrl("/dologin")
+                        .successHandler(authenticationSuccessHandler)
+                        .failureUrl("/signin?error=true")
+                        .permitAll()
+                )
+                // Logout
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                );
+
+        return http.build();
+    }
+
+}

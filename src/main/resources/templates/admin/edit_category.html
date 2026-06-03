@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{admin/admin_base :: layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit Category</title>
+</head>
+
+<body>
+
+<section>
+
+	<div class="container mt-5">
+
+		<div class="row justify-content-center">
+
+			<div class="col-md-6 col-lg-5">
+
+				<div class="card shadow-lg border-0">
+
+					<div class="card-header bg-primary text-white text-center py-3">
+
+						<h3 class="mb-0 fw-bold">
+							<i class="fa-solid fa-pen-to-square me-2"></i>
+							Edit Category
+						</h3>
+
+					</div>
+
+					<div class="card-body p-4">
+
+						<!-- Success Message -->
+
+						<th:block th:if="${session.succMsg}">
+
+							<div class="alert alert-success">
+
+								[[${session.succMsg}]]
+
+							</div>
+
+							<th:block th:text="${@commnServiceImpl.removeSessionMessage()}">
+							</th:block>
+
+						</th:block>
+
+						<!-- Error Message -->
+
+						<th:block th:if="${session.errorMsg}">
+
+							<div class="alert alert-danger">
+
+								[[${session.errorMsg}]]
+
+							</div>
+
+							<th:block th:text="${@commnServiceImpl.removeSessionMessage()}">
+							</th:block>
+
+						</th:block>
+
+						<form action="/categories/update"
+							  method="post"
+							  enctype="multipart/form-data">
+
+							<input type="hidden"
+								   name="id"
+								   th:value="${category.id}">
+
+							<!-- Category Name -->
+
+							<div class="mb-3">
+
+								<label class="form-label fw-semibold">
+									Enter Category
+								</label>
+
+								<input type="text"
+									   name="name"
+									   th:value="${category.name}"
+									   class="form-control form-control-lg">
+
+							</div>
+
+							<!-- Status -->
+
+							<div class="mb-3">
+
+								<label class="form-label fw-semibold">
+									Status
+								</label>
+
+								<div class="d-flex gap-4 mt-2">
+
+									<div class="form-check">
+
+										<input class="form-check-input"
+											   type="radio"
+											   th:checked="${category.isActive==true}"
+											   value="true"
+											   name="isActive"
+											   id="active">
+
+										<label class="form-check-label"
+											   for="active">
+											Active
+										</label>
+
+									</div>
+
+									<div class="form-check">
+
+										<input class="form-check-input"
+											   type="radio"
+											   th:checked="${category.isActive==false}"
+											   value="false"
+											   name="isActive"
+											   id="inactive">
+
+										<label class="form-check-label"
+											   for="inactive">
+											Inactive
+										</label>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<!-- Upload Image -->
+
+							<div class="mb-3">
+
+								<label class="form-label fw-semibold">
+									Upload Image
+								</label>
+
+								<input type="file"
+									   name="file"
+									   class="form-control">
+
+							</div>
+
+							<!-- Current Image -->
+
+							<div class="text-center mb-4">
+
+								<img th:src="@{'/img/category_img/'+${category.imageName}}"
+									 width="120"
+									 height="120"
+									 class="rounded shadow">
+
+							</div>
+
+							<!-- Buttons -->
+
+							<button type="submit"
+									class="btn btn-primary w-100">
+
+								<i class="fa-solid fa-floppy-disk me-2"></i>
+								Update Category
+
+							</button>
+
+							<a href="/categories/view"
+							   class="btn btn-outline-secondary w-100 mt-2">
+
+								<i class="fa-solid fa-arrow-left me-2"></i>
+								Back
+
+							</a>
+
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+</body>
+
+</html>
