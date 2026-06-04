@@ -84,7 +84,7 @@ Database
 
 Create a MySQL database:
 
-```sql
+sql
 CREATE DATABASE ecommerce_database;
 ```
 
