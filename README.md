@@ -193,7 +193,7 @@ Through this project I gained hands-on experience with:
 
 **Rohit Jadhav**
 
-GitHub: https://github.com/YOUR_GITHUB_USERNAME
+GitHub: https://github.com/Rohitjadhav36
 
 ---
 
